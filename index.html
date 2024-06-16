@@ -28,7 +28,12 @@
 					below. Alternatively, you can use "RR301591815EE"
 					as a valid example code, or "AA123456789ZZ" as an invalid one.
 				</p>
-				<input id="user-input" type="text" pattern="[A-Za-z]{2}[0-9]{9}[A-Za-z]{2}" placeholder="Your S10 code..." maxlength="13">
+				<input id="user-input"
+					type="text"
+					pattern="[A-Za-z]{2}[0-9]{9}[A-Za-z]{2}"
+					placeholder="Your S10 code..."
+					maxlength="13"
+					spellcheck="false">
 				<output id="validation-feedback"></output>
 			</section>
 			<section id="preview">
@@ -795,7 +800,7 @@ EL["user-input"].addEventListener("input", function(evt) {
 	}
 
 	// If code is in the correct format
-	const formatRegex = /[A-Z]{2}[0-9]{9}[A-Z]{2}/i;
+	const formatRegex = /^[A-Z]{2}[0-9]{9}[A-Z]{2}$/i;
 	if(formatRegex.test(val)) {
 		// Update visualization
 		visualize(val);
