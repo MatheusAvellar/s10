@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="preconnect" href="https://cdn.avl.la/" crossorigin>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="style.css?v2">
 </head>
 <body>
 	<header>
@@ -52,22 +52,22 @@
 					meaning:<br>
 					<strong id="insert-service-indicator-meaning"></strong>.
 				</p>
-				<div class="table-wrapper">
+				<div id="table-wrapper">
 					<table id="service-indicator-table">
 						<tr>
 							<th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th><th>I</th><th>J</th><th>K</th><th>L</th><th>M</th><th>N</th><th>O</th><th>P</th><th>Q</th><th>R</th><th>S</th><th>T</th><th>U</th><th>V</th><th>W</th><th>X</th><th>Y</th><th>Z</th>
 						</tr>
 						<tr>
-							<th>A</th><td class="unassigned" colspan="21">Unassigned</td><td class="dbm" colspan="5" title="Domestic items, items subject to bilateral and/or multilateral agreements">D/BMA</td>
+							<th>A</th><td class="unassigned" colspan="21">Unassigned</td><td class="dbm" colspan="5" title="Domestic items; items subject to bilateral and/or multilateral agreements">D/BMA</td>
 						</tr>
 						<tr>
-							<th>B</th><td class="dbm" colspan="26">Domestic items, items subject to bilateral and/or multilateral agreements</td>
+							<th>B</th><td class="dbm" colspan="26">Domestic items; items subject to bilateral and/or multilateral agreements</td>
 						</tr>
 						<tr>
 							<th>C</th><td class="parcel" colspan="26">Parcel post</td>
 						</tr>
 						<tr>
-							<th>D</th><td class="dbm" colspan="26">Domestic items, items subject to bilateral and/or multilateral agreements</td>
+							<th>D</th><td class="dbm" colspan="26">Domestic items; items subject to bilateral and/or multilateral agreements</td>
 						</tr>
 						<tr>
 							<th>E</th><td class="ems" colspan="26">Express Mail Service</td>
@@ -77,9 +77,9 @@
 						</tr>
 						<tr>
 							<th>G</th>
-							<td class="dbm" title="Domestic items, items subject to bilateral and/or multilateral agreements">D/A</td>
+							<td class="dbm" title="Domestic items; items subject to bilateral and/or multilateral agreements">D/A</td>
 							<td class="unassigned" colspan="2">Unass.</td>
-							<td class="dbm" title="Domestic items, items subject to bilateral and/or multilateral agreements">D/A</td>
+							<td class="dbm" title="Domestic items; items subject to bilateral and/or multilateral agreements">D/A</td>
 							<td class="unassigned" colspan="22">Unassigned</td>
 						</tr>
 						<tr>
@@ -101,13 +101,13 @@
 							<th>M</th><td class="mbag" colspan="26">M bags</td>
 						</tr>
 						<tr>
-							<th>N</th><td class="dbm" colspan="26">Domestic items, items subject to bilateral and/or multilateral agreements</td>
+							<th>N</th><td class="dbm" colspan="26">Domestic items; items subject to bilateral and/or multilateral agreements</td>
 						</tr>
 						<tr>
 							<th>O</th><td class="unassigned" colspan="26">Unassigned</td>
 						</tr>
 						<tr>
-							<th>P</th><td class="dbm" colspan="26">Domestic items, items subject to bilateral and/or multilateral agreements</td>
+							<th>P</th><td class="dbm" colspan="26">Domestic items; items subject to bilateral and/or multilateral agreements</td>
 						</tr>
 						<tr>
 							<th>Q</th>
@@ -139,9 +139,31 @@
 							<th>Y</th>
 						</tr>
 						<tr>
-							<th>Z</th><td class="dbm" colspan="26">Domestic items, items subject to bilateral and/or multilateral agreements</td>
+							<th>Z</th><td class="dbm" colspan="26">Domestic items; items subject to bilateral and/or multilateral agreements</td>
 						</tr>
 					</table>
+					<ul class="legend">
+						<li class="entry">
+							<div class="square unassigned"></div>
+							<div class="label">Unassigned / reserved</div>
+						</li>
+						<li class="entry">
+							<div class="square ems"></div>
+							<div class="label">Express Mail Service</div>
+						</li>
+						<li class="entry">
+							<div class="square letter"></div>
+							<div class="label">Letter post</div>
+						</li>
+						<li class="entry">
+							<div class="square parcel"></div>
+							<div class="label">Parcel post</div>
+						</li>
+						<li class="entry">
+							<div class="square dbm"></div>
+							<div class="label">Domestic/bilateral/multilateral use only</div>
+						</li>
+					</ul>
 				</div>
 			</section>
 		</details>

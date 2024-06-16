@@ -157,10 +157,35 @@ details > section {
 	padding: 1rem;
 }
 
-.table-wrapper {
+#table-wrapper {
 	width: 100%;
 	overflow-x: auto;
 }
+#table-wrapper .legend {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 2rem;
+	width: 100%;
+	margin: 1rem 0 0;
+	padding: 0;
+	list-style: none;
+	font-size: .75rem;
+}
+#table-wrapper .legend .entry {
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+	margin-bottom: .5rem;
+	line-height: 1;
+}
+#table-wrapper .legend .entry .square {
+	width: 1rem;
+	height: 1rem;
+	aspect-ratio: 1;
+	background-color: #eee;
+	border: 1px solid #777;
+}
+
 #service-indicator-table {
 	font-size: .75rem;
 	min-width: 560px;
@@ -179,20 +204,27 @@ details > section {
 	background-color: #eee;
 	color: #c78104;
 }
-#service-indicator-table td.unassigned {
+#service-indicator-table td.unassigned,
+#table-wrapper .legend .entry .square.unassigned {
 	background-color: #eee;
 	color: #777;
 }
-#service-indicator-table td.dbm {
+#service-indicator-table td.dbm,
+#table-wrapper .legend .entry .square.dbm {
 	background-color: #ddf2ff;
 }
 #service-indicator-table td.letter,
-#service-indicator-table td.ems,
 #service-indicator-table td.mbag,
-#service-indicator-table td.ibrs {
+#service-indicator-table td.ibrs,
+#table-wrapper .legend .entry .square.letter {
 	background-color: #e4f6e8;
 }
-#service-indicator-table td.parcel {
+#service-indicator-table td.ems,
+#table-wrapper .legend .entry .square.ems {
+	background-color: #ffefd4;
+}
+#service-indicator-table td.parcel,
+#table-wrapper .legend .entry .square.parcel {
 	background-color: #f2e5f2;
 }
 
@@ -251,7 +283,7 @@ details > section {
 	#preview .label {
 		font-size: .65rem;
 	}
-	#service-indicator-table {
+	#table-wrapper {
 		display: none;
 	}
 	#check-digit-section {
