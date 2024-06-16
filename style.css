@@ -1,0 +1,264 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: "Inter var", Inter, Roboto, sans-serif;
+	line-height: 1.5;
+	font-size: 18px;
+	margin: 8px;
+}
+header, main, footer {
+	max-width: 750px;
+	margin: auto;
+}
+header {
+	background-color: #eee;
+	margin-bottom: 2rem;
+	padding: 1rem .75rem;
+	border-radius: 4px;
+}
+footer {
+	background-color: #eee;
+	margin-top: 5rem;
+	padding: .75rem 1rem;
+	border-radius: 4px;
+	font-size: 1rem;
+}
+footer p+p {
+	margin-top: 1rem;
+}
+.sign {
+	text-align: right;
+	color: #777;
+}
+h1 {
+	margin: 0;
+	line-height: 1;
+}
+p {
+	margin: 0;
+}
+a[href] {
+	color: #1984e4;
+	font-weight: 600;
+	text-decoration: none;
+}
+a[href]:hover, a[href]:focus-visible {
+	text-decoration: underline;
+}
+
+#input-area p {
+	text-indent: 2rem;
+}
+#user-input {
+	display: block;
+	margin: auto;
+	color: #444;
+	font-family: inherit;
+	font-weight: 600;
+	font-size: 1.5rem;
+	font-variant-numeric: tabular-nums;
+	background-color: #efefef;
+	padding: .5rem 1rem;
+	border: 4px solid #9dc8eb;
+	border-radius: 8px;
+	outline: 0;
+}
+#user-input:focus-visible {
+	border-color: #444;
+}
+#user-input:not(:placeholder-shown, [data-invalid]):valid {
+	border-color: #43c943;
+	color: #077307;
+}
+#user-input:not(:placeholder-shown, [data-invalid]):valid + #validation-feedback {
+	color: #077307;
+}
+#validation-feedback {
+	display: block;
+	text-align: center;
+	margin: .25rem 0 1rem;
+}
+#validation-feedback::after {
+	content: "\00A0";
+}
+
+#preview {
+	display: grid;
+	gap: .5rem;
+	grid-template-columns: repeat(4, min-content);
+
+	font-size: 4rem;
+	font-weight: 700;
+	padding: 2rem 2.5rem;
+	line-height: 1;
+
+	margin: 0 auto 3rem;
+	width: min-content;
+
+	border: 5px solid #eee;
+	border-radius: 8px;
+	background-color: #fefefe;
+}
+#preview output {
+	font-variant-numeric: tabular-nums;
+	font-feature-settings: "cv08" 1;
+	text-transform: uppercase;
+	text-align: center;
+}
+#preview .label {
+	font-size: .85rem;
+	color: #777;
+	text-align: center;
+	border-top: 5px solid;
+	padding-top: .5rem;
+}
+
+#service-indicator.unassigned {
+	color: #777;
+}
+#service-indicator.reserved {
+	color: #c78104;
+}
+
+#serial-number {
+	color: #444;
+}
+
+#check-digit.valid {
+	color: #41ab41;
+}
+#check-digit.invalid {
+	color: #ed143d;
+}
+
+#country-code.unknown {
+	color: #777;
+}
+
+/**/
+
+details {
+	background-color: #f9f9f9;
+	border: 2px solid #eee;
+	border-radius: 4px;
+	margin: .5rem auto;
+	width: 650px;
+}
+summary {
+	font-weight: bold;
+	padding: 1rem;
+	cursor: pointer;
+}
+details[open] summary {
+	background-color: #eee;
+}
+details > section {
+	padding: 1rem;
+}
+
+.table-wrapper {
+	width: 100%;
+	overflow-x: auto;
+}
+#service-indicator-table {
+	font-size: .75rem;
+	min-width: 560px;
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+	margin-top: 1rem;
+}
+#service-indicator-table td {
+	border: 1px solid #777;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #fefefe;
+}
+#service-indicator-table td.reserved {
+	background-color: #eee;
+	color: #c78104;
+}
+#service-indicator-table td.unassigned {
+	background-color: #eee;
+	color: #777;
+}
+#service-indicator-table td.dbm {
+	background-color: #ddf2ff;
+}
+#service-indicator-table td.letter,
+#service-indicator-table td.ems,
+#service-indicator-table td.mbag,
+#service-indicator-table td.ibrs {
+	background-color: #e4f6e8;
+}
+#service-indicator-table td.parcel {
+	background-color: #f2e5f2;
+}
+
+#check-digit-section {
+	display: flex;
+	gap: 4rem;
+	align-items: flex-end;
+	justify-content: center;
+	margin-top: 1rem;
+}
+#check-digit-calculation {
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+	line-height: 1;
+}
+#check-digit-calculation .times-factor {
+	color: #777;
+}
+#check-digit-calculation .serial-digits-sum {
+	border-top: 2px solid #000;
+}
+[data-hidden] {
+	color: #aaa;
+	text-decoration: line-through;
+}
+
+@media screen and (max-width: 775px) {
+	#preview {
+		font-size: 3rem;
+		padding: 1rem 1.25rem;
+	}
+	details {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 600px) {
+	#preview {
+		font-size: 2rem;
+		padding: .5rem .75rem;
+	}
+	#preview .label {
+		border-width: 3px;
+	}
+}
+@media screen and (max-width: 430px) {
+	#user-input {
+		font-size: 1rem;
+		width: 100%;
+	}
+	#validation-feedback {
+		font-size: .85rem;
+	}
+	#preview {
+		font-size: 1.25rem;
+	}
+	#preview .label {
+		font-size: .65rem;
+	}
+	#service-indicator-table {
+		display: none;
+	}
+	#check-digit-section {
+		gap: 2rem;
+	}
+	#check-digit-calculation,
+	#check-digit-calculation + article {
+		font-size: 1rem;
+	}
+}

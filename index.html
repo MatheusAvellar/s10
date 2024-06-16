@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>S10 Validation Tool</title>
+	<meta content="Matheus Avellar" name="author">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://cdn.avl.la/" crossorigin>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>S10 Validation Tool</h1>
+	</header>
+	<main>
+		<section>
+			<section id="input-area">
+				<p>
+					Hey! This is a validator for the
+					<a href="https://en.wikipedia.org/wiki/Universal_Postal_Union">Universal Postal Union</a>'s
+					<i><a href="https://en.wikipedia.org/wiki/S10_(UPU_standard)">S10</a></i>
+					standard of international mail identification. It's a 13-character
+					code that identifies type and origin country for international mail.
+				</p>
+				<p>
+					You can validate a code of your own by inserting it into the box
+					below. Alternatively, you can use "RR301591815EE"
+					as a valid example code, or "AA123456789ZZ" as an invalid one.
+				</p>
+				<input id="user-input" type="text" pattern="[A-Za-z]{2}[0-9]{9}[A-Za-z]{2}" placeholder="Your S10 code..." maxlength="13">
+				<output id="validation-feedback"></output>
+			</section>
+			<section id="preview">
+				<output id="service-indicator"></output>
+				<output id="serial-number"></output>
+				<output id="check-digit"></output>
+				<output id="country-code"></output>
+				<div class="label">Service<br>Indicator</div>
+				<div class="label">Serial<br>Number</div>
+				<div class="label">Check<br>Digit</div>
+				<div class="label">Country<br>Code</div>
+			</section>
+		</section>
+		<details open>
+			<summary>Service indicator</summary>
+			<section>
+				<p>
+					The service indicator is a two-letter code indicating what the package
+					is. For this specific S10 identifier, the service indicator is
+					<strong id="insert-service-indicator"></strong>,
+					meaning:<br>
+					<strong id="insert-service-indicator-meaning"></strong>.
+				</p>
+				<div class="table-wrapper">
+					<table id="service-indicator-table">
+						<tr>
+							<th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th><th>I</th><th>J</th><th>K</th><th>L</th><th>M</th><th>N</th><th>O</th><th>P</th><th>Q</th><th>R</th><th>S</th><th>T</th><th>U</th><th>V</th><th>W</th><th>X</th><th>Y</th><th>Z</th>
+						</tr>
+						<tr>
+							<th>A</th><td class="unassigned" colspan="21">Unassigned</td><td class="dbm" colspan="5" title="Domestic items, items subject to bilateral and/or multilateral agreements">D/BMA</td>
+						</tr>
+						<tr>
+							<th>B</th><td class="dbm" colspan="26">Domestic items, items subject to bilateral and/or multilateral agreements</td>
+						</tr>
+						<tr>
+							<th>C</th><td class="parcel" colspan="26">Parcel post</td>
+						</tr>
+						<tr>
+							<th>D</th><td class="dbm" colspan="26">Domestic items, items subject to bilateral and/or multilateral agreements</td>
+						</tr>
+						<tr>
+							<th>E</th><td class="ems" colspan="26">Express Mail Service</td>
+						</tr>
+						<tr>
+							<th>F</th><td class="unassigned" colspan="26">Unassigned</td>
+						</tr>
+						<tr>
+							<th>G</th>
+							<td class="dbm" title="Domestic items, items subject to bilateral and/or multilateral agreements">D/A</td>
+							<td class="unassigned" colspan="2">Unass.</td>
+							<td class="dbm" title="Domestic items, items subject to bilateral and/or multilateral agreements">D/A</td>
+							<td class="unassigned" colspan="22">Unassigned</td>
+						</tr>
+						<tr>
+							<th>H</th><td class="parcel" colspan="26">E-commerce parcels</td>
+						</tr>
+						<tr>
+							<th>I</th><td class="unassigned" colspan="26">Unassigned</td>
+						</tr>
+						<tr>
+							<th>J</th><td class="reserved" colspan="26" rowspan="2">Reserved</td>
+						</tr>
+						<tr>
+							<th>K</th>
+						</tr>
+						<tr>
+							<th>L</th><td class="letter" colspan="26">Letter post (tracked)</td>
+						</tr>
+						<tr>
+							<th>M</th><td class="mbag" colspan="26">M bags</td>
+						</tr>
+						<tr>
+							<th>N</th><td class="dbm" colspan="26">Domestic items, items subject to bilateral and/or multilateral agreements</td>
+						</tr>
+						<tr>
+							<th>O</th><td class="unassigned" colspan="26">Unassigned</td>
+						</tr>
+						<tr>
+							<th>P</th><td class="dbm" colspan="26">Domestic items, items subject to bilateral and/or multilateral agreements</td>
+						</tr>
+						<tr>
+							<th>Q</th>
+							<td class="ibrs" colspan="13">International Business Reply Service</td>
+							<td class="unassigned" colspan="13">Unassigned</td>
+						</tr>
+						<tr>
+							<th>R</th><td class="letter" colspan="26">Letter post (registered)</td>
+						</tr>
+						<tr>
+							<th>S</th><td class="reserved" colspan="26" rowspan="2">Reserved</td>
+						</tr>
+						<tr>
+							<th>T</th>
+						</tr>
+						<tr>
+							<th>U</th><td class="letter" colspan="26">Letter post (generic)</td>
+						</tr>
+						<tr>
+							<th>V</th><td class="letter" colspan="26">Letter post (insured)</td>
+						</tr>
+						<tr>
+							<th>W</th><td class="reserved" colspan="26">Reserved</td>
+						</tr>
+						<tr>
+							<th>X</th><td class="unassigned" colspan="26" rowspan="2">Unassigned</td>
+						</tr>
+						<tr>
+							<th>Y</th>
+						</tr>
+						<tr>
+							<th>Z</th><td class="dbm" colspan="26">Domestic items, items subject to bilateral and/or multilateral agreements</td>
+						</tr>
+					</table>
+				</div>
+			</section>
+		</details>
+		<details open>
+			<summary>Check digit</summary>
+			<section>
+				<p>
+					The check digit is calculated from the previous 8 digits in the
+					serial number. It's a quick way to check if the S10 identifier is
+					valid.
+				</p>
+				<article id="check-digit-section">
+					<table id="check-digit-calculation">
+						<tr>
+							<td></td>
+							<td class="serial-digit" data-index="1"></td>
+							<td class="times-factor">&times; 8</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="serial-digit" data-index="2"></td>
+							<td class="times-factor">&times; 6</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="serial-digit" data-index="3"></td>
+							<td class="times-factor">&times; 4</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="serial-digit" data-index="4"></td>
+							<td class="times-factor">&times; 2</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="serial-digit" data-index="5"></td>
+							<td class="times-factor">&times; 3</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="serial-digit" data-index="6"></td>
+							<td class="times-factor">&times; 5</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="serial-digit" data-index="7"></td>
+							<td class="times-factor">&times; 9</td>
+						</tr>
+						<tr>
+							<td>+</td>
+							<td class="serial-digit" data-index="8"></td>
+							<td class="times-factor">&times; 7</td>
+						</tr>
+						<tr>
+							<td class="serial-digits-sum" colspan="3">200</td>
+						</tr>
+					</table>
+					<article>
+						<p>
+							11 &minus; (<span class="serial-digits-sum"></span> mod 11) =
+						</p>
+						<p>
+							11 &minus; (<span id="serial-digits-sum-mod11"></span>) = <span class="eleven-mod11"></span>
+						</p>
+						<p>
+							<span class="eleven-mod11"></span> < 10? <strong id="check-digit-lt-10"></strong><br>
+							<span id="check-digit-is-n" data-hidden>
+								&rarr; Check digit is <span class="eleven-mod11"></span>.
+							</span>
+						</p>
+						<p id="check-digit-step2" data-hidden>
+							<span class="eleven-mod11"></span> = 10?
+							<strong id="check-digit-eq-10"></strong><br>
+							<span id="check-digit-is-0" data-hidden>
+								&rarr; Check digit is 0.
+							</span>
+						</p>
+						<p id="check-digit-step3" data-hidden>
+							&rarr; Check digit is 5.
+						</p>
+					</article>
+				</article>
+			</section>
+		</details>
+		<details open>
+			<summary>Country code</summary>
+			<section>
+				<p>
+					Country codes are two-letter codes from the
+					<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a>
+					standard. For this specific S10 identifier, the country code is
+					<strong id="insert-country-code"></strong>,
+					which is <strong id="insert-country-code-meaning"></strong>.
+				</p>
+			</section>
+		</details>
+	</main>
+	<footer>
+		<p>
+			This project is not affiliated with the UN, UPU or any organizations,
+			governmental or otherwise. It is developed and maintained voluntarily and
+			independently.
+		</p>
+		<p>
+			Based on the standard by the Universal Postal Union (17 October 2017):
+			<a href="https://www.upu.int/UPU/media/upu/files/postalSolutions/programmesAndServices/standards/S10-12.pdf">S10:
+			Identification of postal items – 13-character identifier</a>.
+		</p>
+		<p>
+			No information is sent anywhere. Everything is calculated locally, on your
+			device. I just made this because the one linked by Wikipedia was broken.
+			Yes, really.
+		</p>
+		<p class="sign">
+			Made with ♥︎<!--&#xFE0E;[Ref] stackoverflow.com/a/38452396/4824627-->
+			by Matheus Avellar<br>
+			Rio de Janeiro, 2024
+		</p>
+	</footer>
+	<script>
+const ISO3166alpha2 = {
+	"AD": "Andorra",
+	"AE": "United Arab Emirates",
+	"AF": "Afghanistan",
+	"AG": "Antigua and Barbuda",
+	"AI": "Anguilla",
+	"AL": "Albania",
+	"AM": "Armenia",
+	"AO": "Angola",
+	"AQ": "Antarctica",
+	"AR": "Argentina",
+	"AS": "American Samoa",
+	"AT": "Austria",
+	"AU": "Australia",
+	"AW": "Aruba",
+	"AX": "Åland Islands",
+	"AZ": "Azerbaijan",
+	"BA": "Bosnia and Herzegovina",
+	"BB": "Barbados",
+	"BD": "Bangladesh",
+	"BE": "Belgium",
+	"BF": "Burkina Faso",
+	"BG": "Bulgaria",
+	"BH": "Bahrain",
+	"BI": "Burundi",
+	"BJ": "Benin",
+	"BL": "Saint Barthélemy",
+	"BM": "Bermuda",
+	"BN": "Brunei",
+	"BO": "Bolivia",
+	"BQ": "Bonaire, Sint Eustatius and Saba",
+	"BR": "Brazil",
+	"BS": "Bahamas",
+	"BT": "Bhutan",
+	"BV": "Bouvet Island",
+	"BW": "Botswana",
+	"BY": "Belarus",
+	"BZ": "Belize",
+	"CA": "Canada",
+	"CC": "Cocos (Keeling) Islands",
+	"CD": "Congo DR",
+	"CF": "Central African Republic",
+	"CG": "Congo",
+	"CH": "Switzerland",
+	"CI": "Côte d'Ivoire",
+	"CK": "Cook Islands",
+	"CL": "Chile",
+	"CM": "Cameroon",
+	"CN": "China",
+	"CO": "Colombia",
+	"CR": "Costa Rica",
+	"CU": "Cuba",
+	"CV": "Cabo Verde",
+	"CW": "Curaçao",
+	"CX": "Christmas Island",
+	"CY": "Cyprus",
+	"CZ": "Czechia",
+	"DE": "Germany",
+	"DJ": "Djibouti",
+	"DK": "Denmark",
+	"DM": "Dominica",
+	"DO": "Dominican Republic",
+	"DZ": "Algeria",
+	"EC": "Ecuador",
+	"EE": "Estonia",
+	"EG": "Egypt",
+	"EH": "Western Sahara",
+	"ER": "Eritrea",
+	"ES": "Spain",
+	"ET": "Ethiopia",
+	"FI": "Finland",
+	"FJ": "Fiji",
+	"FK": "Falkland Islands (Malvinas)",
+	"FM": "Micronesia",
+	"FO": "Faroe Islands",
+	"FR": "France",
+	"GA": "Gabon",
+	"GB": "United Kingdom",
+	"GD": "Grenada",
+	"GE": "Georgia",
+	"GF": "French Guiana",
+	"GG": "Guernsey",
+	"GH": "Ghana",
+	"GI": "Gibraltar",
+	"GL": "Greenland",
+	"GM": "Gambia",
+	"GN": "Guinea",
+	"GP": "Guadeloupe",
+	"GQ": "Equatorial Guinea",
+	"GR": "Greece",
+	"GS": "South Georgia and the South Sandwich Islands",
+	"GT": "Guatemala",
+	"GU": "Guam",
+	"GW": "Guinea-Bissau",
+	"GY": "Guyana",
+	"HK": "Hong Kong",
+	"HM": "Heard Island and McDonald Islands",
+	"HN": "Honduras",
+	"HR": "Croatia",
+	"HT": "Haiti",
+	"HU": "Hungary",
+	"ID": "Indonesia",
+	"IE": "Ireland",
+	"IL": "Israel",
+	"IM": "Isle of Man",
+	"IN": "India",
+	"IO": "British Indian Ocean Territory",
+	"IQ": "Iraq",
+	"IR": "Iran",
+	"IS": "Iceland",
+	"IT": "Italy",
+	"JE": "Jersey",
+	"JM": "Jamaica",
+	"JO": "Jordan",
+	"JP": "Japan",
+	"KE": "Kenya",
+	"KG": "Kyrgyzstan",
+	"KH": "Cambodia",
+	"KI": "Kiribati",
+	"KM": "Comoros",
+	"KN": "Saint Kitts and Nevis",
+	"KP": "North Korea",
+	"KR": "South Korea",
+	"KW": "Kuwait",
+	"KY": "Cayman Islands",
+	"KZ": "Kazakhstan",
+	"LA": "Laos",
+	"LB": "Lebanon",
+	"LC": "Saint Lucia",
+	"LI": "Liechtenstein",
+	"LK": "Sri Lanka",
+	"LR": "Liberia",
+	"LS": "Lesotho",
+	"LT": "Lithuania",
+	"LU": "Luxembourg",
+	"LV": "Latvia",
+	"LY": "Libya",
+	"MA": "Morocco",
+	"MC": "Monaco",
+	"MD": "Moldova",
+	"ME": "Montenegro",
+	"MF": "Saint Martin",
+	"MG": "Madagascar",
+	"MH": "Marshall Islands",
+	"MK": "North Macedonia",
+	"ML": "Mali",
+	"MM": "Myanmar",
+	"MN": "Mongolia",
+	"MO": "Macao",
+	"MP": "Northern Mariana Islands",
+	"MQ": "Martinique",
+	"MR": "Mauritania",
+	"MS": "Montserrat",
+	"MT": "Malta",
+	"MU": "Mauritius",
+	"MV": "Maldives",
+	"MW": "Malawi",
+	"MX": "Mexico",
+	"MY": "Malaysia",
+	"MZ": "Mozambique",
+	"NA": "Namibia",
+	"NC": "New Caledonia",
+	"NE": "Niger",
+	"NF": "Norfolk Island",
+	"NG": "Nigeria",
+	"NI": "Nicaragua",
+	"NL": "Netherlands",
+	"NO": "Norway",
+	"NP": "Nepal",
+	"NR": "Nauru",
+	"NU": "Niue",
+	"NZ": "New Zealand",
+	"OM": "Oman",
+	"PA": "Panama",
+	"PE": "Peru",
+	"PF": "French Polynesia",
+	"PG": "Papua New Guinea",
+	"PH": "Philippines",
+	"PK": "Pakistan",
+	"PL": "Poland",
+	"PM": "Saint Pierre and Miquelon",
+	"PN": "Pitcairn",
+	"PR": "Puerto Rico",
+	"PS": "Palestine",
+	"PT": "Portugal",
+	"PW": "Palau",
+	"PY": "Paraguay",
+	"QA": "Qatar",
+	"RE": "Réunion",
+	"RO": "Romania",
+	"RS": "Serbia",
+	"RU": "Russia",
+	"RW": "Rwanda",
+	"SA": "Saudi Arabia",
+	"SB": "Solomon Islands",
+	"SC": "Seychelles",
+	"SD": "Sudan",
+	"SE": "Sweden",
+	"SG": "Singapore",
+	"SH": "Saint Helena, Ascension and Tristan da Cunha",
+	"SI": "Slovenia",
+	"SJ": "Svalbard and Jan Mayen",
+	"SK": "Slovakia",
+	"SL": "Sierra Leone",
+	"SM": "San Marino",
+	"SN": "Senegal",
+	"SO": "Somalia",
+	"SR": "Suriname",
+	"SS": "South Sudan",
+	"ST": "Sao Tome and Principe",
+	"SV": "El Salvador",
+	"SX": "Sint Maarten",
+	"SY": "Syrian Arab Republic",
+	"SZ": "Eswatini",
+	"TC": "Turks and Caicos Islands",
+	"TD": "Chad",
+	"TF": "French Southern Territories",
+	"TG": "Togo",
+	"TH": "Thailand",
+	"TJ": "Tajikistan",
+	"TK": "Tokelau",
+	"TL": "Timor-Leste",
+	"TM": "Turkmenistan",
+	"TN": "Tunisia",
+	"TO": "Tonga",
+	"TR": "Turkey",
+	"TT": "Trinidad and Tobago",
+	"TV": "Tuvalu",
+	"TW": "Taiwan",
+	"TZ": "Tanzania",
+	"UA": "Ukraine",
+	"UG": "Uganda",
+	"UM": "United States Minor Outlying Islands",
+	"US": "United States of America",
+	"UY": "Uruguay",
+	"UZ": "Uzbekistan",
+	"VA": "Holy See",
+	"VC": "Saint Vincent and the Grenadines",
+	"VE": "Venezuela",
+	"VG": "Virgin Islands (British)",
+	"VI": "Virgin Islands (U.S.)",
+	"VN": "Viet Nam",
+	"VU": "Vanuatu",
+	"WF": "Wallis and Futuna",
+	"WS": "Samoa",
+	"YE": "Yemen",
+	"YT": "Mayotte",
+	"ZA": "South Africa",
+	"ZM": "Zambia",
+	"ZW": "Zimbabwe",
+	// Exceptional reservations
+	"AC": "Ascension Island",
+	"CP": "Clipperton Island",
+	"CQ": "Island of Sark",
+	"DG": "Diego Garcia",
+	"EA": "Ceuta, Melilla",
+	"EU": "European Union",
+	"EZ": "Eurozone",
+	"FX": "France",
+	"IC": "Canary Islands",
+	"SU": "USSR",
+	"TA": "Tristan da Cunha",
+	"UK": "United Kingdom",
+	"UN": "United Nations"
+};
+
+const S10ServiceIndicators = [
+	[ /A[A-U]|F[A-Z]|G[B-C]|G[E-Z]|I[A-Z]|O[A-Z]|Q[N-Z]|X[A-Z]|Y[A-Z]/i, "Unassigned" ],
+	[ /B[A-Z]|D[A-Z]|GA|GD|N[A-Z]|P[A-Z]|Z[A-Z]/i, "Domestic, bilateral, multilateral use only" ],
+	[ /J[A-Z]|K[A-Z]|S[A-Z]|T[A-Z]|W[A-Z]/i, "Reserved" ],
+	[ /C[A-U]|C[W-Y]/i, "Parcel post" ],
+	[ /A[V-Z]/i, "Domestic, bilateral, multilateral use only (preferrably RFID-tracked items)" ],
+	[ /E[A-W]/i, "Express Mail Service" ],
+	[ /E[X-Z]/i, "Express Mail Service (requires bilateral agreement)" ],
+	[ /H[A-W]/i, "E-commerce parcels" ],
+	[ /H[X-Y]/i, "E-commerce parcels (requires multilateral agreement)" ],
+	[ /L[A-Y]/i, "Letter post tracked" ],
+	[ /M[A-Z]/i, "Mail bags" ],
+	[ /Q[A-M]/i, "International Business Reply Service" ],
+	[ /R[A-Y]/i, "Registered mail" ],
+	[ /U[A-Y]/i, "Generic letter post items" ],
+	[ /V[A-Y]/i, "Letter post insured" ],
+	[ /CV/i, "Parcel post (preferrably for insured parcels)" ],
+	[ /CZ/i, "Parcel post (requires bilateral agreement)" ],
+	[ /GA/i, "Express Mail Service" ],
+	[ /HZ/i, "E-commerce parcels (requires bilateral agreement)" ],
+	[ /LZ/i, "Letter post tracked (requires bilateral agreement)" ],
+	[ /RZ/i, "Registered mail (requires bilateral agreement)" ],
+	[ /UZ/i, "Generic letter post items (requires bilateral agreement)" ],
+	[ /VZ/i, "Letter post insured (requires bilateral agreement)" ],
+];
+	</script>
+	<script>
+// Look, this code is a bit of a mess, ok
+// I'm aware of it
+
+const EL = {
+	"user-input": document.getElementById("user-input"),
+	"validation-feedback": document.getElementById("validation-feedback"),
+	"service-indicator": document.getElementById("service-indicator"),
+	"service-indicator-table": document.getElementById("service-indicator-table"),
+	"serial-number": document.getElementById("serial-number"),
+	"check-digit": document.getElementById("check-digit"),
+	"country-code": document.getElementById("country-code"),
+	"check-digit-calculation": document.getElementById("check-digit-calculation"),
+	"insert-country-code": document.getElementById("insert-country-code"),
+	"insert-country-code-meaning": document.getElementById("insert-country-code-meaning"),
+	"insert-service-indicator": document.getElementById("insert-service-indicator"),
+	"insert-service-indicator-meaning": document.getElementById("insert-service-indicator-meaning")
+};
+
+function report(message) {
+	EL["validation-feedback"].innerText = message;
+}
+function splitValidCode(code) {
+	return {
+		serviceIndicator: code.substring(0, 2),
+		serialNumber: code.substring(2, 10),
+		checkDigit: code.substring(10, 11),
+		countryCode: code.substring(11, 13)
+	};
+}
+
+function visualize(code) {
+	const s10 = splitValidCode(code);
+
+	// Service indicator
+	EL["service-indicator"].innerText = s10.serviceIndicator;
+	EL["service-indicator"].className = "not-found";
+	for(let i = 0, L = S10ServiceIndicators.length; i < L; i++) {
+		if(S10ServiceIndicators[i][0].test(s10.serviceIndicator)) {
+			const service = S10ServiceIndicators[i][1];
+			EL["insert-service-indicator"].innerText = s10.serviceIndicator;
+			EL["insert-service-indicator-meaning"].innerText = service;
+			EL["service-indicator"].className = "";
+
+			if(service.toLowerCase().startsWith("unassigned")) {
+				EL["service-indicator"].className = "unassigned";
+			}
+			if(service.toLowerCase().startsWith("reserved"))
+				EL["service-indicator"].className = "reserved";
+			break;
+		}
+	}
+
+	// Serial number
+	EL["serial-number"].innerText = s10.serialNumber;
+	const trueCD = validateS10Serial(s10.serialNumber, true);
+	const serialDigits = [...EL["check-digit-calculation"].querySelectorAll(".serial-digit")];
+	serialDigits.forEach((el, i) => {
+		const index = "index" in el.dataset ? (el.dataset.index - 1) : i;
+		el.innerText = s10.serialNumber[index];
+	});
+
+
+	// Check digit
+	EL["check-digit"].innerText = s10.checkDigit;
+
+	if(s10.checkDigit != trueCD) {
+		EL["check-digit"].className = "invalid";
+	} else {
+		EL["check-digit"].className = "valid";
+	}
+
+	// Country code
+	EL["country-code"].innerText = s10.countryCode;
+	EL["insert-country-code"].innerText = s10.countryCode;
+
+	if(s10.countryCode in ISO3166alpha2) {
+		EL["country-code"].className = "";
+		EL["insert-country-code-meaning"].innerText = ISO3166alpha2[s10.countryCode];
+	} else {
+		EL["country-code"].className = "unknown";
+		EL["insert-country-code-meaning"].innerText = "not defined in the standard";
+	}
+}
+
+const serialDigitsSum = [...document.querySelectorAll(".serial-digits-sum")];
+const elevenMod11 = [...document.querySelectorAll(".eleven-mod11")];
+const serialDigitsSumMod11 = document.getElementById("serial-digits-sum-mod11");
+
+const checkDigitLt10 = document.getElementById("check-digit-lt-10");
+const checkDigitEq10 = document.getElementById("check-digit-eq-10");
+const hidden_checkDigitIsN = document.getElementById("check-digit-is-n");
+const hidden_checkDigitIs0 = document.getElementById("check-digit-is-0");
+const hidden_checkDigitStep2 = document.getElementById("check-digit-step2");
+const hidden_checkDigitStep3 = document.getElementById("check-digit-step3");
+
+function validateS10Serial(serial, updateDOM) {
+	const weights = [ 8, 6, 4, 2, 3, 5, 9, 7 ];
+	let sum = 0;
+	for(let i = 0; i < 8; i++) {
+		sum += serial[i] * weights[i];
+	}
+	if(updateDOM) {
+		serialDigitsSum.forEach(e => { e.innerText = sum; });
+		serialDigitsSumMod11.innerText = sum % 11;
+	}
+
+	const result = 11 - (sum % 11);
+	if(updateDOM) {
+		elevenMod11.forEach(e => { e.innerText = result; });
+		checkDigitLt10.innerText = "No!";
+		checkDigitEq10.innerText = "No!";
+		hidden_checkDigitIsN.setAttribute("data-hidden", "");
+		hidden_checkDigitIs0.setAttribute("data-hidden", "");
+		hidden_checkDigitStep2.setAttribute("data-hidden", "");
+		hidden_checkDigitStep3.setAttribute("data-hidden", "");
+	}
+
+	if(result < 10) {
+		if(updateDOM) {
+			hidden_checkDigitIsN.removeAttribute("data-hidden");
+			checkDigitLt10.innerText = "Yes!";
+		}
+		return `${result}`;
+	}
+
+	if(updateDOM) {
+		hidden_checkDigitStep2.removeAttribute("data-hidden");
+	}
+	if(result == 10) {
+		if(updateDOM) {
+			checkDigitEq10.innerText = "Yes!";
+			hidden_checkDigitIs0.removeAttribute("data-hidden");
+		}
+		return "0";
+	}
+	if(updateDOM) {
+		hidden_checkDigitStep3.removeAttribute("data-hidden");
+	}
+	return "5";
+}
+
+// Problem: we don't want to allow the user to insert invalid characters
+// For example, if they copy a formatted code like 'AA 00 00 00 00 0 AA'
+// It would be ideal to remove the spaces and only register what we want
+EL["user-input"].addEventListener("beforeinput", function(evt) {
+	// If there's no data, we don't care to change anything
+	if(!evt.data)
+		return;
+	// Get current input value
+	const val = EL["user-input"].value;
+	// Get data from event
+	const data = evt.data;
+	// Truncate it for later in case we need it
+	let trunctedData = data;
+	if(data.length > 10) {
+		trunctedData = data.substring(0, 10) + "...";
+	}
+
+	// If there's any invalid character in the data
+	if(/[^A-Z0-9]/i.test(data)) {
+		// Let's first filter out what's invalid
+		const filtered = data.replaceAll(/[^A-Z0-9]/gi, "").toUpperCase().substring(0, 13);
+		// If there's nothing left, we can just prevent the entire event
+		if(filtered.length <= 0) {
+			console.log(`Preventing insertion of '${trunctedData}'`);
+			// [!] preventDefault() does NOT prevent insertion of
+			// characters (such as emoji, kaomoji) inserted via Win + .
+			// We must filter them later on the "input" event
+			evt.preventDefault();
+			evt.stopPropagation();
+			return false;
+		}
+		// Otherwise, we want to allow SOME but not ALL of the characters
+		console.log(`Allowing insertion of '${filtered}' (from original '${trunctedData}')`);
+
+		// Before we can insert the text, let's figure out WHERE to insert it
+		const selStart = EL["user-input"].selectionStart;
+		const selEnd = EL["user-input"].selectionEnd;
+		// If input is still focused
+		if(document.activeElement === EL["user-input"]) {
+			// Get text before and after selection
+			const textBefore = val.substring(0, selStart);
+			const textAfter = val.substring(selEnd, 13);
+			// Calculate max size of insertion
+			const maxSize = 13 - (textBefore.length + textAfter.length);
+			// Truncate input to max size
+			const truncatedFiltered = filtered.substring(0, maxSize);
+			console.log(`Attempting to paste ${filtered.length} character(s)
+Truncating paste to size ${maxSize}: '${truncatedFiltered}'.`);
+			// Update input text
+			EL["user-input"].value = textBefore + truncatedFiltered + textAfter;
+		} else {
+			console.log("???? input isn't focused??");
+		}
+		EL["user-input"].dispatchEvent(new Event("input", { bubbles: true }));
+		evt.preventDefault();
+		evt.stopPropagation();
+		return false;
+	}
+});
+EL["user-input"].addEventListener("input", function(evt) {
+	// Remove any previous status
+	EL["user-input"].removeAttribute("data-invalid");
+
+	let val = EL["user-input"].value.toUpperCase();
+	const invalidRegex = /[^A-Z0-9]/gi;
+	// If user inserted invalid characters (e.g. via Win + .)
+	if(invalidRegex.test(val)) {
+		console.log("Invalid characters inserted! Removing...");
+		EL["user-input"].value = val = val.replace(invalidRegex, "").substring(0, 13);
+	}
+	const len = val.length;
+	if(!len) {
+		report("");
+		return;
+	}
+
+	// If code is in the correct format
+	const formatRegex = /[A-Z]{2}[0-9]{9}[A-Z]{2}/i;
+	if(formatRegex.test(val)) {
+		// Update visualization
+		visualize(val);
+		// We only need to confirm the check digit is correct
+		const code = splitValidCode(val);
+		const trueCD = validateS10Serial(code.serialNumber);
+		if(trueCD == code.checkDigit) {
+			// It is correct!
+			report("Valid!");
+			// Leave
+			return;
+		}
+		// Check digit is incorrect! :(
+		report(`Check digit '${code.checkDigit}' should be ${trueCD}!`);
+		// We also need to add a class to prevent :valid from activating
+		EL["user-input"].setAttribute("data-invalid", "");
+		// Leave
+		return;
+	}
+
+	// Otherwise let's report what's wrong with it
+	if(len < 13) {
+		report(`Code is too short! ${len}/13.`);
+	} else if(len > 13) {
+		report(`Code is too long! ${len}/13.`);
+	} else {
+		const alphaRegex = /^[A-Z]{2}$/i;
+		// First and last 2 characters must be letters
+		const first2 = val.substring(0, 2);
+		const startsWith2A = alphaRegex.test(first2);
+		const last2 = val.substring(val.length - 2);
+		const endsWith2A = alphaRegex.test(last2);
+
+		if(!startsWith2A) {
+			report(`Code must begin with 2 letters (e.g. 'AA' instead of '${first2}').`);
+		} else if(!endsWith2A) {
+			report(`Code must end with 2 letters (e.g. 'AA' instead of '${last2}').`);
+		} else {
+			const digitRegex = /^[0-9]{9}$/i;
+			// Middle 9 characters must be digits
+			const serial = val.substring(2, val.length - 2);
+			const sandwichesDigits = digitRegex.test(serial);
+			if(!sandwichesDigits) {
+				report(`Serial code must consist only of digits (e.g. '123456789' instead of '${serial}').`);
+			}
+		}
+	}
+});
+
+// Obtained via photos on Wikimedia Commons or the UPU S10 standard
+const sampleS10s = [
+	"RR930367291DE",
+	"RR966230202PL",
+	"RI476394652CH",
+	"CP170251153CN",
+	"RC910653284CH",
+	"RN827525984RO",
+	"RS371536444GB",
+	"RB030764355DE",
+	"RR301591815EE",
+	"RM524748675DE",
+	"RN555061405DE",
+	"RA912495966BE",
+	"RR003681206LK",
+	"RN784590507DE",
+	"RI963599157GB",
+	"RR205583428CZ",
+	"RV972415188DE",
+	"RN305110598GB",
+	"LZ647929979US"
+];
+
+const randomS10 = sampleS10s[Math.floor(Math.random()*sampleS10s.length)];
+visualize(randomS10);
+	</script>
+	<link rel="stylesheet" href="https://cdn.avl.la/font/inter.css">
+</body>
+</html>
